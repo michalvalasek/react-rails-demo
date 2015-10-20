@@ -12,17 +12,13 @@ let Records = React.createClass({
   },
 
   addRecord(record) {
-    let records = this.state.records.slice();
-    records.push(record);
-    this.setState({
-      records: records
-    });
+    let records = React.addons.update(this.state.records, {$push: [record]});
+    this.setState({records: records})
   },
 
   deleteRecord(record) {
-    let records = this.state.records.slice();
     let index = records.indexOf(record);
-    records.splice(index, 1);
+    let records = React.addons.update(this.state.records, {$splice: [[index, 1]]});
     this.replaceState({records: records})
   },
 
