@@ -16,8 +16,14 @@ let Records = React.createClass({
     this.setState({records: records})
   },
 
+  updateRecord(record, data) {
+    let index = this.state.records.indexOf(record);
+    let records = React.addons.update(this.state.records, {$splice: [[index, 1, data]]});
+    this.replaceState({records: records})
+  },
+
   deleteRecord(record) {
-    let index = records.indexOf(record);
+    let index = this.state.records.indexOf(record);
     let records = React.addons.update(this.state.records, {$splice: [[index, 1]]});
     this.replaceState({records: records})
   },
@@ -41,7 +47,8 @@ let Records = React.createClass({
       <Record
         key={record._id.$oid}
         record={record}
-        handleDeleteRecord={this.deleteRecord} />
+        handleDeleteRecord={this.deleteRecord}
+        handleEditRecord={this.updateRecord} />
     )
   },
 
