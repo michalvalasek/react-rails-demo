@@ -29,6 +29,10 @@ module ReactTutorial
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    # React
     config.react.addons = true
+    config.react.server_renderer_options = {
+        files: ["react.js", "components.js", "utils.js"], # files to load for prerendering
+      }
   end
 end
